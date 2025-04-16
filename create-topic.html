@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание темы - Школьный Форум</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('https://www.transparenttextures.com/patterns/white-sand.png');
+            background-color: #f4f6f9;
+            color: #444;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .auth-container {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+
+        .auth-container a {
+            color: white;
+            font-size: 16px;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        .auth-container a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            width: 80%;
+            max-width: 800px;
+            margin: 40px 0;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #34495e;
+            font-size: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #34495e;
+        }
+
+        .success-message {
+            color: green;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Школьный Форум</h1>
+    <nav>
+        <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="topics.html">Темы</a></li>
+                <li><a href="create-topic.html">Создание темы</a></li> <!-- Новый пункт меню -->
+        </ul>
+    </nav>
+    <div class="auth-container">
+        <a href="login.html">Вход</a>
+        <a href="register.html">Регистрация</a>
+    </div>
+</header>
+
+<main>
+    <h2>Создание новой темы</h2>
+    <form id="topic-form">
+        <div class="form-group">
+            <label for="first-name">Имя</label>
+            <input type="text" id="first-name" name="first_name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="last-name">Фамилия</label>
+            <input type="text" id="last-name" name="last_name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="middle-name">Отчество</label>
+            <input type="text" id="middle-name" name="middle_name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="class">Класс</label>
+            <input type="text" id="class" name="class" required>
+        </div>
+
+        <div class="form-group">
+            <label for="topic-title">Заголовок темы</label>
+            <input type="text" id="topic-title" name="title" required>
+        </div>
+
+        <div class="form-group">
+            <label for="topic-description">Описание темы</label>
+            <textarea id="topic-description" name="description" required></textarea>
+        </div>
+
+        <button type="submit">Создать тему</button>
+    </form>
+
+    <p id="success-message" class="success-message" style="display: none;">Ваша тема добавлена!</p>
+</main>
+
+<footer>
+    <p>&copy; 2025 Школьный Форум. Все права защищены.</p>
+</footer>
+
+<script>
+// Проверим, если в localStorage уже есть темы
+function loadTopics() {
+    const topics = JSON.parse(localStorage.getItem('topics')) || [];
+    const topicList = document.getElementById('topic-list');
+    
+    topicList.innerHTML = ''; // Очищаем список перед добавлением
+
+    topics.forEach(topic => {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
+            <h3>${topic.title}</h3>
+            <p>Автор: ${topic.first_name} ${topic.last_name} (${topic.class})</p>
+            <p>${topic.description}</p>
+            <p><small>Дата: ${topic.timestamp}</small></p>
+        `;
+        topicList.appendChild(listItem);
+    });
+}
+
+// Обработчик отправки формы
+document.getElementById('topic-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Отменяем стандартную отправку формы
+
+    // Собираем данные из формы
+    const firstName = document.getElementById('first-name').value;
+    const lastName = document.getElementById('last-name').value;
+    const middleName = document.getElementById('middle-name').value;
+    const className = document.getElementById('class').value;
+    const title = document.getElementById('topic-title').value;
+    const description = document.getElementById('topic-description').value;
+
+    // Получаем текущие темы из localStorage
+    const topics = JSON.parse(localStorage.getItem('topics')) || [];
+
+    // Добавляем новую тему в массив
+    const newTopic = {
+        first_name: firstName,
+        last_name: lastName,
+        middle_name: middleName,
+        class: className,
+        title: title,
+        description: description,
+        timestamp: new Date().toLocaleString()
+    };
+
+    topics.push(newTopic);
+
+    // Сохраняем темы обратно в localStorage
+    localStorage.setItem('topics', JSON.stringify(topics));
+
+    // Отображаем сообщение об успешном добавлении
+    const successMessage = document.getElementById('success-message');
+    successMessage.style.display = 'block';
+
+    // Загружаем обновленный список тем
+    loadTopics();
+
+    // Очистить форму
+    document.getElementById('topic-form').reset();
+});
+
+// Загружаем темы при загрузке страницы
+window.onload = function() {
+    loadTopics();
+};
+</script>
+
+</body>
+</html>

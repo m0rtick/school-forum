@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Школьный Форум</title>
+    <style>
+        /* Стили остаются без изменений */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('https://www.transparenttextures.com/patterns/white-sand.png');
+            background-color: #f4f6f9;
+            color: #444;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .auth-container {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+
+        .auth-container a {
+            color: white;
+            font-size: 16px;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        .auth-container a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            width: 80%;
+            max-width: 1000px;
+            margin: 40px 0;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #34495e;
+            font-size: 28px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2c3e50;
+            color: white;
+            width: 100%;
+        }
+
+        .highlight {
+            background-color: #ecf0f1;
+            padding: 10px 15px;
+            border-left: 5px solid #3498db;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Школьный Форум</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="topics.html">Темы</a></li>
+                <li><a href="create-topic.html">Создание темы</a></li>
+            </ul>
+        </nav>
+        <div class="auth-container">
+            <a href="login.html">Вход</a>
+            <a href="register.html">Регистрация</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="section" id="home">
+            <h2>Добро пожаловать на школьный форум!</h2>
+            <p>📚 Здесь собираются ученики, учителя и родители, чтобы обсудить школьную жизнь, задать вопросы и поделиться опытом. Участвуй в обсуждениях, находи единомышленников и будь в курсе всех событий!</p>
+            <div class="highlight">
+                🎉 <strong>Новое:</strong> Мы запустили раздел <em>«Школьные события»</em>! Рассказывай о мероприятиях, делись фотографиями и впечатлениями.
+            </div>
+            <p>🔐 Зарегистрируйся, чтобы создавать свои темы и отвечать на сообщения других пользователей.</p>
+        </section>
+
+        <section class="section" id="about">
+            <h2>О форуме</h2>
+            <p>Наш форум — это платформа для:</p>
+            <ul>
+                <li>Обсуждения домашних заданий и учебных тем</li>
+                <li>Совместной подготовки к контрольным и экзаменам</li>
+                <li>Обмена идеями по школьным проектам</li>
+                <li>Обратной связи от учителей и родителей</li>
+            </ul>
+        </section>
+
+        <section class="section" id="rules">
+            <h2>Правила форума</h2>
+            <p>Чтобы общение оставалось комфортным для всех, соблюдайте простые правила:</p>
+            <ul>
+                <li>Будьте вежливы и уважайте чужое мнение</li>
+                <li>Не публикуйте спам и оскорбления</li>
+                <li>Следите за грамотностью — это всё-таки школьный форум :)</li>
+                <li>Соблюдайте конфиденциальность и не делитесь личными данными</li>
+            </ul>
+        </section>
+
+        <section class="section" id="topics">
+            <h2>Темы форума</h2>
+            <ul id="topic-list">
+                <li><a href="#">Домашние задания по математике</a></li>
+                <li><a href="#">Подготовка к ЕГЭ и ОГЭ</a></li>
+                <li><a href="#">Советы первоклассникам</a></li>
+                <li><a href="#">Школьный театр и кружки</a></li>
+                <li><a href="#">Конкурсы и олимпиады</a></li>
+            </ul>
+        </section>
+
+        <section class="section" id="join">
+            <h2>Присоединяйся к нам!</h2>
+            <p>Стань частью школьного сообщества уже сегодня:</p>
+            <ul>
+                <li>Создавай свои темы и опросы</li>
+                <li>Общайся с учениками из других классов</li>
+                <li>Задавай вопросы учителям напрямую</li>
+                <li>Участвуй в конкурсах форума</li>
+            </ul>
+            <p>💬 Чем больше участников — тем интереснее становится форум!</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Школьный Форум. Все права защищены.</p>
+    </footer>
+
+</body>
+</html>
