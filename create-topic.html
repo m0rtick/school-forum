@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Создание темы - Школьный Форум</title>
+    <title>Школьный Форум</title>
     <style>
+        /* Общие стили */
         body {
             font-family: 'Arial', sans-serif;
             background: url('https://www.transparenttextures.com/patterns/white-sand.png');
@@ -21,14 +22,16 @@
             background-color: #2c3e50;
             color: white;
             width: 100%;
-            padding: 20px 0;
+            padding: 30px 0;
             text-align: center;
             position: relative;
+            border-bottom: 4px solid #2c3e50;
         }
 
         header h1 {
             margin: 0;
-            font-size: 36px;
+            font-size: 40px;
+            font-weight: bold;
         }
 
         nav ul {
@@ -36,11 +39,11 @@
             padding: 0;
             display: flex;
             justify-content: center;
-            margin-top: 15px;
+            margin-top: 20px;
         }
 
         nav ul li {
-            margin: 0 15px;
+            margin: 0 20px;
         }
 
         nav ul li a {
@@ -49,10 +52,14 @@
             font-size: 18px;
         }
 
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
         .auth-container {
             position: absolute;
             right: 20px;
-            top: 20px;
+            top: 30px;
         }
 
         .auth-container a {
@@ -68,60 +75,136 @@
 
         main {
             width: 80%;
-            max-width: 800px;
+            max-width: 1000px;
             margin: 40px 0;
-            padding: 20px;
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
         }
 
         h2 {
-            color: #34495e;
-            font-size: 28px;
-        }
-
-        .form-group {
+            color: #2c3e50;
+            font-size: 32px;
             margin-bottom: 20px;
         }
 
-        label {
-            display: block;
-            font-size: 18px;
-            margin-bottom: 8px;
+        .topic-list {
+            list-style: none;
+            padding: 0;
         }
 
-        input, textarea {
+        .topic-item {
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #3498db;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .topic-item:hover {
+            transform: scale(1.02);
+        }
+
+        .topic-header {
+            font-size: 22px;
+            font-weight: bold;
+            color: #2c3e50;
+            cursor: pointer;
+        }
+
+        .topic-author {
+            font-size: 16px;
+            color: #7f8c8d;
+            margin-top: 8px;
+            font-weight: bold;
+        }
+
+        .topic-content {
+            margin-top: 15px;
+            display: none;
+        }
+
+        .topic-description {
+            font-size: 16px;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            word-wrap: break-word;
+            word-break: break-word;
+        }
+
+        .comments-section {
+            padding: 15px;
+            background: #ecf0f1;
+            border-radius: 12px;
+        }
+
+        .comment-form textarea {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             font-size: 16px;
             border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-top: 5px;
-        }
-
-        textarea {
+            border-radius: 8px;
+            margin-top: 10px;
             resize: vertical;
-            min-height: 150px;
+            transition: border-color 0.3s ease;
         }
 
-        button {
-            padding: 10px 20px;
+        .comment-form textarea:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        .comment-form button {
+            padding: 12px 20px;
             background-color: #2c3e50;
             color: white;
             border: none;
             font-size: 16px;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 8px;
+            margin-top: 12px;
+            transition: background-color 0.3s ease;
         }
 
-        button:hover {
-            background-color: #34495e;
+        .comment-form button:hover {
+            background-color: #2980b9;
         }
 
-        .success-message {
-            color: green;
+        .comment {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment-author {
             font-weight: bold;
+            color: #2980b9;
+        }
+
+        .comment-text {
+            margin-top: 8px;
+            font-size: 16px;
+            color: #34495e;
+            word-wrap: break-word;
+            word-break: break-word;
+        }
+
+        .notification {
+            padding: 12px;
+            background-color: #27ae60;
+            color: white;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: none;
+            text-align: center;
+            font-size: 16px;
+            opacity: 1;
+            transition: opacity 2s ease-out;
         }
 
     </style>
@@ -132,126 +215,165 @@
     <h1>Школьный Форум</h1>
     <nav>
         <ul>
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="topics.html">Темы</a></li>
-                <li><a href="create-topic.html">Создание темы</a></li> <!-- Новый пункт меню -->
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="topics.html">Темы</a></li>
+            <li><a href="create-topic.html">Создание темы</a></li>
         </ul>
     </nav>
     <div class="auth-container">
-        <a href="login.html">Вход</a>
-        <a href="register.html">Регистрация</a>
+        <a href="login.html" id="login-link">Вход</a>
+        <a href="register.html" id="register-link">Регистрация</a>
+        <a href="javascript:void(0);" id="logout-link" style="display: none;">Выйти</a>
     </div>
 </header>
 
 <main>
-    <h2>Создание новой темы</h2>
-    <form id="topic-form">
-        <div class="form-group">
-            <label for="first-name">Имя</label>
-            <input type="text" id="first-name" name="first_name" required>
-        </div>
-
-        <div class="form-group">
-            <label for="last-name">Фамилия</label>
-            <input type="text" id="last-name" name="last_name" required>
-        </div>
-
-        <div class="form-group">
-            <label for="middle-name">Отчество</label>
-            <input type="text" id="middle-name" name="middle_name" required>
-        </div>
-
-        <div class="form-group">
-            <label for="class">Класс</label>
-            <input type="text" id="class" name="class" required>
-        </div>
-
-        <div class="form-group">
-            <label for="topic-title">Заголовок темы</label>
-            <input type="text" id="topic-title" name="title" required>
-        </div>
-
-        <div class="form-group">
-            <label for="topic-description">Описание темы</label>
-            <textarea id="topic-description" name="description" required></textarea>
-        </div>
-
-        <button type="submit">Создать тему</button>
-    </form>
-
-    <p id="success-message" class="success-message" style="display: none;">Ваша тема добавлена!</p>
+    <h2>Темы форума</h2>
+    <ul class="topic-list" id="topic-list">
+        <!-- Темы будут отображаться здесь -->
+    </ul>
 </main>
 
 <footer>
     <p>&copy; 2025 Школьный Форум. Все права защищены.</p>
 </footer>
 
-<script>
-// Проверим, если в localStorage уже есть темы
-function loadTopics() {
-    const topics = JSON.parse(localStorage.getItem('topics')) || [];
-    const topicList = document.getElementById('topic-list');
-    
-    topicList.innerHTML = ''; // Очищаем список перед добавлением
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+  import {
+    getFirestore,
+    collection,
+    getDocs,
+    doc,
+    updateDoc,
+    arrayUnion,
+    onSnapshot
+  } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
-    topics.forEach(topic => {
-        const listItem = document.createElement('li');
-        listItem.innerHTML = `
-            <h3>${topic.title}</h3>
-            <p>Автор: ${topic.first_name} ${topic.last_name} (${topic.class})</p>
-            <p>${topic.description}</p>
-            <p><small>Дата: ${topic.timestamp}</small></p>
-        `;
-        topicList.appendChild(listItem);
+  const firebaseConfig = {
+    apiKey: "AIzaSyCKdHeXI1bvWzSL117gXA46lnMMbCciEjU",
+    authDomain: "school-forum-8199d.firebaseapp.com",
+    projectId: "school-forum-8199d",
+    storageBucket: "school-forum-8199d.appspot.com",
+    messagingSenderId: "385285384270",
+    appId: "1:385285384270:web:73412db077186becc53b1f",
+    measurementId: "G-KCNBQBMEVM"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+  const topicList = document.getElementById("topic-list");
+  const logoutLink = document.getElementById("logout-link");
+  const loginLink = document.getElementById("login-link");
+  const registerLink = document.getElementById("register-link");
+
+  // Отображение/скрытие ссылок на вход/выход
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      logoutLink.style.display = "inline";
+      loginLink.style.display = "none";
+      registerLink.style.display = "none";
+    } else {
+      logoutLink.style.display = "none";
+      loginLink.style.display = "inline";
+      registerLink.style.display = "inline";
+    }
+  });
+
+  // Выход
+  logoutLink.addEventListener("click", () => {
+    signOut(auth);
+  });
+
+  // Загрузка тем из Firestore
+  async function loadTopics() {
+    const querySnapshot = await getDocs(collection(db, "topics"));
+    topicList.innerHTML = "";
+
+    querySnapshot.forEach((docSnap) => {
+      const topic = docSnap.data();
+      const id = docSnap.id;
+      const user = auth.currentUser;
+
+      const listItem = document.createElement("li");
+      listItem.classList.add("topic-item");
+      listItem.innerHTML = `
+        <div class="topic-header" onclick="toggleTopic('${id}')">${topic.title}</div>
+        <div class="topic-author">${topic.first_name} ${topic.last_name} (${topic.class})</div>
+        <div class="topic-content" id="topic-content-${id}">
+            <div class="topic-description">${topic.description}</div>
+            <div class="comments-section">
+                <h3>Комментарии:</h3>
+                <div id="comments-${id}"></div>
+                <div class="comment-form">
+                    <textarea id="comment-text-${id}" placeholder="Оставьте комментарий"></textarea>
+                    <button onclick="addComment('${id}')">Оставить комментарий</button>
+                    <div class="notification" id="notification-${id}">Ваш комментарий оставлен!</div>
+                </div>
+            </div>
+        </div>
+      `;
+      topicList.appendChild(listItem);
+
+      // Подписка на комментарии
+      onSnapshot(doc(db, "topics", id), (docSnap) => {
+        const data = docSnap.data();
+        displayComments(id, data.comments || []);
+      });
     });
-}
+  }
 
-// Обработчик отправки формы
-document.getElementById('topic-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Отменяем стандартную отправку формы
+  window.toggleTopic = function (id) {
+    const content = document.getElementById(`topic-content-${id}`);
+    content.style.display = content.style.display === "block" ? "none" : "block";
+  };
 
-    // Собираем данные из формы
-    const firstName = document.getElementById('first-name').value;
-    const lastName = document.getElementById('last-name').value;
-    const middleName = document.getElementById('middle-name').value;
-    const className = document.getElementById('class').value;
-    const title = document.getElementById('topic-title').value;
-    const description = document.getElementById('topic-description').value;
+  window.addComment = async function (id) {
+    const textArea = document.getElementById(`comment-text-${id}`);
+    const text = textArea.value.trim();
+    if (!text) return;
 
-    // Получаем текущие темы из localStorage
-    const topics = JSON.parse(localStorage.getItem('topics')) || [];
-
-    // Добавляем новую тему в массив
-    const newTopic = {
-        first_name: firstName,
-        last_name: lastName,
-        middle_name: middleName,
-        class: className,
-        title: title,
-        description: description,
-        timestamp: new Date().toLocaleString()
+    const user = auth.currentUser;
+    const comment = {
+      author: user ? `${user.displayName}` : "Аноним",
+      text: text,
+      timestamp: new Date().toLocaleString()
     };
 
-    topics.push(newTopic);
+    const topicRef = doc(db, "topics", id);
+    await updateDoc(topicRef, {
+      comments: arrayUnion(comment)
+    });
 
-    // Сохраняем темы обратно в localStorage
-    localStorage.setItem('topics', JSON.stringify(topics));
+    textArea.value = "";
+    const notification = document.getElementById(`notification-${id}`);
+    notification.style.display = "block";
+    setTimeout(() => {
+      notification.style.opacity = 0;
+      setTimeout(() => {
+        notification.style.display = "none";
+        notification.style.opacity = 1;
+      }, 2000);
+    }, 1000);
+  };
 
-    // Отображаем сообщение об успешном добавлении
-    const successMessage = document.getElementById('success-message');
-    successMessage.style.display = 'block';
+  function displayComments(id, comments) {
+    const container = document.getElementById(`comments-${id}`);
+    container.innerHTML = "";
+    comments.forEach(comment => {
+      const commentDiv = document.createElement("div");
+      commentDiv.classList.add("comment");
+      commentDiv.innerHTML = `
+        <div class="comment-author">${comment.author} <small>(${comment.timestamp})</small></div>
+        <div class="comment-text">${comment.text}</div>
+      `;
+      container.appendChild(commentDiv);
+    });
+  }
 
-    // Загружаем обновленный список тем
-    loadTopics();
-
-    // Очистить форму
-    document.getElementById('topic-form').reset();
-});
-
-// Загружаем темы при загрузке страницы
-window.onload = function() {
-    loadTopics();
-};
+  loadTopics();
 </script>
 
 </body>
